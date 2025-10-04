@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navigation from "@/components/Navigation";
 import EarthScene from "@/components/EarthScene";
 import HexBackground from "@/components/HexBackground";
+import BackedBy from "@/components/BackedBy";
+import ScrollProgress from "@/components/ScrollProgress";
 import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -90,6 +92,7 @@ const Index = () => {
 
   return (
     <div ref={containerRef} className="min-h-screen relative overflow-hidden">
+      <ScrollProgress />
       <HexBackground />
       <Navigation />
       
@@ -158,6 +161,9 @@ const Index = () => {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Backed By Section */}
+      <BackedBy />
 
       {/* Stats Section */}
       <section ref={statsRef} className="py-32 px-6 relative scroll-fade">
