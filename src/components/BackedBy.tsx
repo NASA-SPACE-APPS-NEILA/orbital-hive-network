@@ -9,7 +9,7 @@ const BackedBy = () => {
   ];
 
   // Duplicate logos for seamless infinite scroll
-  const duplicatedLogos = [...logos, ...logos, ...logos, ...logos];
+  const duplicatedLogos = [...logos, ...logos, ...logos, ...logos, ...logos, ...logos];
 
   return (
     <section className="relative py-16 overflow-hidden">
@@ -21,15 +21,15 @@ const BackedBy = () => {
         
         <div className="relative overflow-hidden">
           <motion.div
-            className="flex gap-16 items-center"
+            className="flex gap-24 items-center"
             animate={{
-              x: ["0%", "-50%"],
+              x: ["0%", "-33.33%"],
             }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 20,
+                duration: 25,
                 ease: "linear",
               },
             }}
