@@ -50,36 +50,49 @@ const Earth = () => {
       <mesh ref={earthRef}>
         <Sphere args={[2, 64, 64]}>
           <MeshDistortMaterial
-            color="#0C1E3D"
-            emissive="#1a3a5f"
-            emissiveIntensity={0.3}
-            distort={0.1}
-            speed={1}
-            roughness={0.4}
-            metalness={0.6}
+            color="#0a1628"
+            emissive="#1e3a5c"
+            emissiveIntensity={0.4}
+            distort={0.15}
+            speed={1.5}
+            roughness={0.3}
+            metalness={0.7}
+          />
+        </Sphere>
+      </mesh>
+
+      {/* Atmospheric glow */}
+      <mesh ref={earthRef}>
+        <Sphere args={[2.1, 64, 64]}>
+          <meshStandardMaterial
+            color="#4a7ba7"
+            transparent
+            opacity={0.1}
+            side={THREE.BackSide}
           />
         </Sphere>
       </mesh>
 
       {/* Orbital ring */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[2.5, 0.02, 16, 100]} />
+        <torusGeometry args={[2.5, 0.015, 16, 100]} />
         <meshStandardMaterial
           color="#C8E7FF"
           emissive="#C8E7FF"
-          emissiveIntensity={0.5}
+          emissiveIntensity={0.6}
           transparent
-          opacity={0.4}
+          opacity={0.5}
         />
       </mesh>
 
       {/* Hive nodes */}
       <group ref={hiveNodesRef}>{createHiveNodes()}</group>
 
-      {/* Ambient lighting */}
-      <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} intensity={1} color="#C8E7FF" />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#FF7E2D" />
+      {/* Enhanced lighting */}
+      <ambientLight intensity={0.4} />
+      <pointLight position={[10, 10, 10]} intensity={1.2} color="#C8E7FF" />
+      <pointLight position={[-10, -10, -10]} intensity={0.6} color="#FF7E2D" />
+      <pointLight position={[0, 5, 5]} intensity={0.5} color="#ffffff" />
     </>
   );
 };
@@ -88,16 +101,18 @@ const EarthScene = () => {
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, 8], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
+        camera={{ position: [0, 0, 7], fov: 50 }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
         <OrbitControls
           enableZoom={false}
           enablePan={false}
           autoRotate
-          autoRotateSpeed={0.5}
+          autoRotateSpeed={0.3}
           maxPolarAngle={Math.PI / 1.5}
           minPolarAngle={Math.PI / 3}
+          enableDamping
+          dampingFactor={0.05}
         />
         <Earth />
       </Canvas>
