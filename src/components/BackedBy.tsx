@@ -4,16 +4,17 @@ import nirmaLogo from "@/assets/nirma-logo.png";
 
 const BackedBy = () => {
   const logos = [
-    { src: nirmaLogo, alt: "Nirma University", className: "h-12" },
-    { src: nasaLogo, alt: "NASA", className: "h-16" },
+    { src: nirmaLogo, alt: "Nirma University logo", className: "h-16 w-auto object-contain" },
+    { src: nasaLogo, alt: "NASA logo", className: "h-16 w-auto object-contain" },
   ];
 
   // Duplicate logos for seamless infinite scroll
   const duplicatedLogos = [...logos, ...logos, ...logos, ...logos];
 
   return (
-    <section className="relative py-16 overflow-hidden border-y border-white/10">
-      <div className="container mx-auto px-6">
+    <section className="relative py-16 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-solar-amber/10 blur-3xl" aria-hidden />
+      <div className="container mx-auto px-6 relative">
         <h2 className="text-center text-sm font-space tracking-[0.3em] text-cyan-glow/70 mb-12 uppercase">
           Backed By
         </h2>
@@ -41,6 +42,7 @@ const BackedBy = () => {
                 <img
                   src={logo.src}
                   alt={logo.alt}
+                  loading="lazy"
                   className={logo.className}
                 />
               </div>
