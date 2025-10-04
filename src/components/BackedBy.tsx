@@ -23,7 +23,7 @@ const BackedBy = () => {
           <motion.div
             className="flex gap-16 items-center"
             animate={{
-              x: [0, -1000],
+              x: ["0%", "-50%"],
             }}
             transition={{
               x: {
