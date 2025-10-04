@@ -2,7 +2,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 
 const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
+  const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
@@ -10,10 +10,10 @@ const ScrollProgress = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-solar-amber origin-left z-50"
+      className="fixed top-0 left-0 w-1 h-screen bg-gradient-to-b from-cyan-glow via-solar-amber to-cyan-glow origin-top z-50"
       style={{ 
-        scaleX,
-        boxShadow: "0 0 20px hsl(var(--solar-amber)), 0 0 40px hsl(var(--solar-amber) / 0.5)"
+        scaleY,
+        boxShadow: "0 0 20px hsl(var(--cyan-glow)), 0 0 40px hsl(var(--solar-amber) / 0.5)"
       }}
     />
   );
