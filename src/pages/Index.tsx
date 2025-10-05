@@ -104,8 +104,10 @@ const Index = () => {
           }} />
 
             {/* Orbital Hive Title */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold bg-gradient-to-r from-orange-500 via-orange-400 to-accent bg-clip-text text-transparent">
+            <div className="absolute inset-0 flex items-start justify-center pt-8 md:pt-16 pointer-events-none">
+              <h1 className="text-7xl md:text-9xl lg:text-[12rem] font-black tracking-tight bg-gradient-to-r from-orange-500 via-orange-400 to-accent bg-clip-text text-transparent" style={{
+                textShadow: "0 0 80px rgba(249, 115, 22, 0.3)"
+              }}>
                 Orbital Hive
               </h1>
             </div>
