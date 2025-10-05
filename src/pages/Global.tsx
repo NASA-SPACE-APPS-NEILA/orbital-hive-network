@@ -4,16 +4,24 @@ import { Globe2, Users } from "lucide-react";
 
 const Global = () => {
   const partners = [
-    { name: "NASA", region: "North America", focus: "Deep Space & LEO Operations" },
-    { name: "ESA", region: "Europe", focus: "Space Sustainability & Research" },
+    {
+      name: "NASA",
+      region: "North America",
+      focus: "Deep Space & LEO Operations",
+    },
+    { name: "Astrospace", region: "Europe", focus: "Debris Removal" },
     { name: "ISRO", region: "Asia", focus: "Cost-Effective Launch Solutions" },
-    { name: "JAXA", region: "Asia", focus: "Robotic Systems & Technology" },
+    {
+      name: "RedWire",
+      region: "Asia",
+      focus: "Robotic Systems & 3-D Printing Technology",
+    },
   ];
 
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto">
           <motion.div
@@ -26,7 +34,8 @@ const Global = () => {
               Global Collaboration
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Building a sustainable orbital future through international partnerships
+              Building a sustainable orbital future through international
+              partnerships
             </p>
           </motion.div>
 
