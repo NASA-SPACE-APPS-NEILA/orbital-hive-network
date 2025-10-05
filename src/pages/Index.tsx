@@ -124,14 +124,38 @@ const Index = () => {
 
             {/* Orbital Hive Title */}
             <div className="absolute inset-0 flex items-start justify-center pt-8 md:pt-16 pointer-events-none">
-              <h1
+              <motion.h1
                 className="text-7xl md:text-9xl lg:text-[10rem] font-black tracking-tight bg-gradient-to-r from-orange-500 via-orange-400 to-accent bg-clip-text text-transparent"
                 style={{
                   textShadow: "0 0 80px rgba(249, 115, 22, 0.3)",
                 }}
+                initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1, 
+                  y: 0,
+                }}
+                transition={{
+                  duration: 1.2,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
-                Orbital Hive
-              </h1>
+                {"Orbital Hive".split("").map((char, index) => (
+                  <motion.span
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.8,
+                      delay: index * 0.05,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    style={{ display: "inline-block" }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </motion.h1>
             </div>
 
             {/* SVG Text Animation along arc */}
