@@ -9,7 +9,6 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* OrbitalHive Color System */
-    --background: 215 60% 12%;
     --foreground: 195 100% 95%;
 
     --card: 215 50% 15%;
@@ -38,21 +37,22 @@ All colors MUST be HSL.
     --ring: 195 100% 85%;
 
     --radius: 0.75rem;
-    
+
     /* OrbitalHive Custom Tokens */
     --deep-space: 215 60% 12%;
     --solar-amber: 25 100% 59%;
     --cyan-glow: 195 100% 85%;
     --hex-glow: 25 100% 65%;
-    
+
     /* Gradients */
-    --gradient-cosmic: linear-gradient(135deg, hsl(215 60% 12%) 0%, hsl(215 50% 20%) 50%, hsl(25 100% 35%) 100%);
-    --gradient-hex: linear-gradient(180deg, hsl(25 100% 59% / 0.2) 0%, hsl(195 100% 85% / 0.1) 100%);
     
+    
+
     /* Shadows & Glows */
-    --shadow-hex: 0 0 20px hsl(var(--solar-amber) / 0.3), 0 0 40px hsl(var(--cyan-glow) / 0.2);
+    --shadow-hex: 0 0 20px hsl(var(--solar-amber) / 0.3),
+      0 0 40px hsl(var(--cyan-glow) / 0.2);
     --shadow-amber: 0 0 30px hsl(var(--solar-amber) / 0.5);
-    
+
     /* Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -121,7 +121,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-space overflow-x-hidden;
-    background: linear-gradient(135deg, hsl(215 60% 12%) 0%, hsl(215 50% 20%) 50%, hsl(25 100% 20%) 100%);
+    background: #000000;
   }
 
   /* Custom Scrollbar with Glow */
@@ -135,17 +135,23 @@ All colors MUST be HSL.
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, hsl(var(--solar-amber)), hsl(var(--cyan-glow)));
+    background: linear-gradient(
+      180deg,
+      hsl(var(--solar-amber)),
+      hsl(var(--cyan-glow))
+    );
     border-radius: 10px;
-    box-shadow: 
-      0 0 10px hsl(var(--solar-amber) / 0.5),
+    box-shadow: 0 0 10px hsl(var(--solar-amber) / 0.5),
       0 0 20px hsl(var(--cyan-glow) / 0.3);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, hsl(var(--solar-amber)), hsl(var(--solar-amber) / 0.8));
-    box-shadow: 
-      0 0 15px hsl(var(--solar-amber)),
+    background: linear-gradient(
+      180deg,
+      hsl(var(--solar-amber)),
+      hsl(var(--solar-amber) / 0.8)
+    );
+    box-shadow: 0 0 15px hsl(var(--solar-amber)),
       0 0 30px hsl(var(--cyan-glow) / 0.5);
   }
 
@@ -158,13 +164,14 @@ All colors MUST be HSL.
 
 @layer utilities {
   .hex-glow {
-    filter: drop-shadow(0 0 20px hsl(var(--solar-amber) / 0.4)) drop-shadow(0 0 40px hsl(var(--cyan-glow) / 0.2));
+    filter: drop-shadow(0 0 20px hsl(var(--solar-amber) / 0.4))
+      drop-shadow(0 0 40px hsl(var(--cyan-glow) / 0.2));
   }
-  
+
   .text-glow {
     text-shadow: 0 0 20px hsl(var(--cyan-glow) / 0.6);
   }
-  
+
   .glass-morph {
     background: hsl(var(--card) / 0.4);
     backdrop-filter: blur(12px);
@@ -177,7 +184,7 @@ All colors MUST be HSL.
     border: 1px solid hsl(195 100% 85% / 0.15);
     box-shadow: 0 8px 32px hsl(215 60% 12% / 0.4);
   }
-  
+
   .clip-hexagon {
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   }

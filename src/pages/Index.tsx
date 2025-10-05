@@ -6,11 +6,43 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navigation from "@/components/Navigation";
 import EarthScene from "@/components/EarthScene";
-import HexBackground from "@/components/HexBackground";
-import BackedBy from "@/components/BackedBy";
 import ScrollProgress from "@/components/ScrollProgress";
+import Galaxy from "@/components/Galaxy";
 import { Button } from "@/components/ui/button";
+import LogoLoop from '@/components/LogoLoop';
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
 
+const techLogos = [
+  { node: <SiReact />, title: "React", href: "https://react.dev" },
+  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+];
+
+// Alternative with image sources
+const imageLogos = [
+  { src: "src/assets/nasa-logo.svg", alt: "Company 1", href: "https://www.nasa.gov" },
+  { src: "src/assets/nirma-logo.png", alt: "Company 2", href: "https://nirmauni.ac.in" },
+];
+
+function App() {
+  return (
+    <div style={{ height: '200px', position: 'relative', overflow: 'hidden'}}>
+      <LogoLoop
+        logos={techLogos}
+        speed={120}
+        direction="left"
+        logoHeight={48}
+        gap={40}
+        pauseOnHover
+        scaleOnHover
+        fadeOut
+        fadeOutColor="#ffffff"
+        ariaLabel="Technology partners"
+      />
+    </div>
+  );
+}
 gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
@@ -92,8 +124,20 @@ const Index = () => {
 
   return (
     <div ref={containerRef} className="min-h-screen relative overflow-hidden">
+      {/* Galaxy Background - Fixed throughout entire page */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
+        <Galaxy 
+          mouseInteraction={true}
+          mouseRepulsion={false}
+          density={1}
+          glowIntensity={0.2}
+          saturation={0}
+          hueShift={180}
+          transparent={true}
+        />
+      </div>
+      
       <ScrollProgress />
-      <HexBackground />
       <Navigation />
       
       {/* Hero Section */}
@@ -162,8 +206,28 @@ const Index = () => {
         </div>
       </motion.section>
 
-      {/* Backed By Section */}
-      <BackedBy />
+      {/* Backed By / Partners Section */}
+<section className="py-24 bg-background scroll-fade relative">
+  <div className="container mx-auto text-center">
+    <h2 className="text-4xl md:text-5xl font-bold mb-12">Backed By</h2>
+
+    <div style={{ height: '120px', position: 'relative', overflow: 'hidden' }}>
+      <LogoLoop
+        logos={imageLogos}  // or imageLogos
+        speed={70}
+        direction="left"
+        logoHeight={70}
+        gap={100}
+        pauseOnHover={false}
+        scaleOnHover
+        fadeOut
+        ariaLabel="Technology Partners"
+      />
+    </div>
+  </div>
+</section>
+
+
 
       {/* Stats Section */}
       <section ref={statsRef} className="py-32 px-6 relative scroll-fade">
