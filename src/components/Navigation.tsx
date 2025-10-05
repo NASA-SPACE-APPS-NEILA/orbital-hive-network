@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import logo from "@/assets/orbital-hive-logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -86,11 +87,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <div className="w-10 h-10 bg-secondary/20 clip-hexagon flex items-center justify-center animate-hex-glow">
-                <div className="w-8 h-8 bg-secondary clip-hexagon"></div>
-              </div>
-            </div>
+            <img 
+              src={logo} 
+              alt="Orbital Hive Logo" 
+              className="h-10 w-auto transition-transform group-hover:scale-105"
+            />
             <span className="text-2xl font-bold text-foreground tracking-tight">
               Orbital<span className="text-secondary">Hive</span>
             </span>
