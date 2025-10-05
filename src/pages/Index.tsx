@@ -97,26 +97,26 @@ const Index = () => {
       <Navigation />
 
       {/* Semi-Circular Earth Section */}
-      <section className="relative pt-32 pb-8 overflow-hidden">
-        <div className="container mx-auto max-w-4xl relative">
-          <div className="relative w-full aspect-[2.5/1] overflow-hidden">
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <div className="container mx-auto max-w-6xl relative">
+          <div className="relative w-full aspect-[2/1] overflow-hidden">
             <img 
               src={earthHero} 
               alt="Earth from orbit" 
-              className="w-full h-full object-contain object-center scale-75"
+              className="w-full h-full object-cover object-center rounded-t-full"
               style={{ clipPath: 'ellipse(50% 100% at 50% 100%)' }}
             />
             
             {/* SVG Text Animation along arc */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMax meet">
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax meet">
               <defs>
                 <path 
                   id="textArc" 
-                  d="M 100,380 A 550,550 0 0,1 900,380" 
+                  d="M 50,480 A 600,600 0 0,1 950,480" 
                   fill="none" 
                 />
               </defs>
-              <text className="text-3xl md:text-4xl lg:text-5xl font-bold fill-white" style={{ letterSpacing: '0.05em' }}>
+              <text className="text-4xl md:text-5xl lg:text-6xl font-bold fill-white" style={{ letterSpacing: '0.05em' }}>
                 <textPath href="#textArc" startOffset="0%">
                   <animate 
                     attributeName="startOffset" 
