@@ -103,8 +103,8 @@ const Index = () => {
             <img 
               src={earthHero} 
               alt="Earth from orbit" 
-              className="w-full h-full object-cover object-center scale-150"
-              style={{ clipPath: 'ellipse(50% 100% at 50% 100%)' }}
+              className="w-full h-full object-cover object-bottom scale-150"
+              style={{ clipPath: 'ellipse(50% 100% at 50% 100%)', transform: 'translateY(15%)' }}
             />
             
             {/* SVG Text Animation along arc */}
