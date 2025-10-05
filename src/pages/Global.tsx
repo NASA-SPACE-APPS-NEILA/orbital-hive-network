@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import { Globe2, Users } from "lucide-react";
+import Galaxy from "@/components/Galaxy";
 
 const Global = () => {
   const partners = [
@@ -19,8 +20,12 @@ const Global = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <div className="min-h-screen relative">
+      <div className="fixed inset-0 z-0">
+        <Galaxy transparent={false} />
+      </div>
+      <div className="relative z-10">
+        <Navigation />
 
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto">
@@ -62,6 +67,7 @@ const Global = () => {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

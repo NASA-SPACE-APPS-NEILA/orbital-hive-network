@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import { TrendingUp, DollarSign, Leaf, Target } from "lucide-react";
+import Galaxy from "@/components/Galaxy";
 
 const Investors = () => {
   const metrics = [
@@ -11,8 +12,12 @@ const Investors = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <div className="min-h-screen relative">
+      <div className="fixed inset-0 z-0">
+        <Galaxy transparent={false} />
+      </div>
+      <div className="relative z-10">
+        <Navigation />
       
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto">
@@ -68,6 +73,7 @@ const Investors = () => {
             </div>
           </motion.div>
         </div>
+      </div>
       </div>
     </div>
   );
