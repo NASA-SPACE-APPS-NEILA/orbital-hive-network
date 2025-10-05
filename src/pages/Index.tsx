@@ -98,12 +98,12 @@ const Index = () => {
 
       {/* Semi-Circular Earth Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="container mx-auto max-w-6xl relative">
+        <div className="relative w-full">
           <div className="relative w-full aspect-[2/1] overflow-hidden">
             <img 
               src={earthHero} 
               alt="Earth from orbit" 
-              className="w-full h-full object-cover object-center rounded-t-full"
+              className="w-full h-full object-cover object-center scale-150"
               style={{ clipPath: 'ellipse(50% 100% at 50% 100%)' }}
             />
             
