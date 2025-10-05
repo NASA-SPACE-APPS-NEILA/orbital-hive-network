@@ -42,7 +42,7 @@ const Navigation = () => {
     },
     {
       label: "Missions",
-      items: [{ label: "2026-2030 Roadmap" }, { label: "2031-2040 Vision" }],
+      items: [],
       path: "/missions",
     },
     {

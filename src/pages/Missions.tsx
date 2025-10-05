@@ -41,8 +41,9 @@ const Missions = () => {
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="relative pl-24"
                 >
                   {/* Hex node */}
