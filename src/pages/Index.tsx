@@ -103,6 +103,13 @@ const Index = () => {
             filter: "brightness(0.7) contrast(1.2)"
           }} />
 
+            {/* Orbital Hive Title */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold bg-gradient-to-r from-orange-500 via-orange-400 to-accent bg-clip-text text-transparent">
+                Orbital Hive
+              </h1>
+            </div>
+
             {/* SVG Text Animation along arc */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax meet">
               <defs>
