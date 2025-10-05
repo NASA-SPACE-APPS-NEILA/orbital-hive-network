@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import { Recycle, FlaskConical, Wrench, Atom } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Solutions = () => {
   const solutions = [
@@ -53,13 +54,17 @@ const Solutions = () => {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {solutions.map((solution, idx) => (
-              <motion.div
+              <Link
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.2 }}
-                className={`glass-morph rounded-2xl p-8 hover:scale-105 transition-transform duration-300 bg-gradient-to-br ${solution.gradient}`}
+                to={idx === 0 ? "/solutions/recycling-manufacturing" : "#"}
+                className="block"
               >
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.2 }}
+                  className={`glass-morph rounded-2xl p-8 hover:scale-105 transition-transform duration-300 bg-gradient-to-br ${solution.gradient} cursor-pointer`}
+                >
                 <div className="flex items-start gap-4 mb-6">
                   <div className="p-4 bg-secondary/20 rounded-xl animate-pulse-glow">
                     <solution.icon className="w-8 h-8 text-secondary" />
@@ -85,6 +90,7 @@ const Solutions = () => {
                   ))}
                 </div>
               </motion.div>
+              </Link>
             ))}
           </div>
         </div>

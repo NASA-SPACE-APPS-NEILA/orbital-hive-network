@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 100);
+  });
 
   const navItems = [
     {
@@ -36,8 +42,26 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass-morph border-b border-border/20">
-      <div className="container mx-auto px-6 py-4">
+    <div className="fixed top-0 left-0 right-0 z-50 px-4">
+      <motion.nav
+        animate={{
+          width: isScrolled ? "90%" : "100%",
+          marginTop: isScrolled ? "1rem" : "0",
+          borderRadius: isScrolled ? "50px" : "20px",
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 30,
+        }}
+        className="mx-auto glass-morph border-b border-border/20"
+        style={{
+          boxShadow: isScrolled
+            ? "0 10px 40px rgba(0, 0, 0, 0.1)"
+            : "none",
+        }}
+      >
+        <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
@@ -133,8 +157,9 @@ const Navigation = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-    </nav>
+        </div>
+      </motion.nav>
+    </div>
   );
 };
 

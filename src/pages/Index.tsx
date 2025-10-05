@@ -10,97 +10,84 @@ import Galaxy from "@/components/Galaxy";
 import LogoLoop from "@/components/LogoLoop";
 import { Button } from "@/components/ui/button";
 import earthHero from "@/assets/earth-hero.jpg";
-
-const imageLogos = [
-  {
-    src: "src/assets/nasa-logo.svg",
-    alt: "Company 1",
-    href: "https://www.nasa.gov",
-  },
-  {
-    src: "src/assets/nirma-logo.png",
-    alt: "Company 2",
-    href: "https://nirmauni.ac.in",
-  },
-];
-
+const imageLogos = [{
+  src: "src/assets/nasa-logo.svg",
+  alt: "Company 1",
+  href: "https://www.nasa.gov"
+}, {
+  src: "src/assets/nirma-logo.png",
+  alt: "Company 2",
+  href: "https://nirmauni.ac.in"
+}];
 gsap.registerPlugin(ScrollTrigger);
-
 const Index = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const missionRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-
-  const missionInView = useInView(missionRef, { once: true, margin: "-100px" });
-  const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
-
+  const missionInView = useInView(missionRef, {
+    once: true,
+    margin: "-100px"
+  });
+  const statsInView = useInView(statsRef, {
+    once: true,
+    margin: "-100px"
+  });
   useEffect(() => {
     // GSAP Scroll Animations
     const ctx = gsap.context(() => {
       // Fade in sections on scroll
-      gsap.utils.toArray<HTMLElement>(".scroll-fade").forEach((element) => {
+      gsap.utils.toArray<HTMLElement>(".scroll-fade").forEach(element => {
         gsap.from(element, {
           scrollTrigger: {
             trigger: element,
             start: "top 80%",
             end: "top 50%",
-            scrub: 1,
+            scrub: 1
           },
           opacity: 0,
-          y: 100,
+          y: 100
         });
       });
 
       // Scale cards on scroll
-      gsap.utils.toArray<HTMLElement>(".scale-card").forEach((element) => {
+      gsap.utils.toArray<HTMLElement>(".scale-card").forEach(element => {
         gsap.from(element, {
           scrollTrigger: {
             trigger: element,
             start: "top 85%",
             end: "top 60%",
-            scrub: 1,
+            scrub: 1
           },
           scale: 0.8,
-          opacity: 0,
+          opacity: 0
         });
       });
 
       // Number counter animation
-      gsap.utils.toArray<HTMLElement>(".counter").forEach((element) => {
+      gsap.utils.toArray<HTMLElement>(".counter").forEach(element => {
         const target = parseInt(element.getAttribute("data-target") || "0");
         gsap.from(element, {
           scrollTrigger: {
             trigger: element,
-            start: "top 80%",
+            start: "top 80%"
           },
           textContent: 0,
           duration: 2,
-          snap: { textContent: 1 },
-          onUpdate: function () {
-            element.textContent = Math.round(
-              Number(this.targets()[0].textContent)
-            ).toLocaleString();
+          snap: {
+            textContent: 1
           },
+          onUpdate: function () {
+            element.textContent = Math.round(Number(this.targets()[0].textContent)).toLocaleString();
+          }
         });
       });
     }, containerRef);
-
     return () => ctx.revert();
   }, []);
-
-  return (
-    <div ref={containerRef} className="min-h-screen relative overflow-hidden">
+  return <div ref={containerRef} className="min-h-screen relative overflow-hidden">
       {/* Galaxy Background - Fixed throughout entire page */}
       <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
-        <Galaxy
-          mouseInteraction={true}
-          mouseRepulsion={false}
-          density={1}
-          glowIntensity={0.2}
-          saturation={0}
-          hueShift={180}
-          transparent={true}
-        />
+        <Galaxy mouseInteraction={true} mouseRepulsion={false} density={1} glowIntensity={0.2} saturation={0} hueShift={180} transparent={true} />
       </div>
 
       <ScrollProgress />
@@ -110,46 +97,26 @@ const Index = () => {
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div className="relative w-full">
           <div className="relative w-full aspect-[2/1] overflow-hidden">
-            <img
-              src={earthHero}
-              alt="Earth from orbit"
-              className="w-full h-full object-cover object-bottom scale-150"
-              style={{
-                clipPath: "ellipse(50% 100% at 50% 100%)",
-                transform: "translateY(20%)",
-                filter: "brightness(0.7) contrast(1.2)",
-              }}
-            />
+            <img src={earthHero} alt="Earth from orbit" className="w-full h-full object-cover object-bottom scale-150" style={{
+            clipPath: "ellipse(50% 100% at 50% 100%)",
+            transform: "translateY(20%)",
+            filter: "brightness(0.7) contrast(1.2)"
+          }} />
 
             {/* SVG Text Animation along arc */}
-            <svg
-              className="absolute inset-0 w-full h-full"
-              viewBox="0 0 1000 500"
-              preserveAspectRatio="xMidYMax meet"
-            >
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax meet">
               <defs>
-                <path
-                  id="textArc"
-                  d="M 50,780 A 420,325 0 0,1 950,480"
-                  fill="none"
-                />
+                <path id="textArc" d="M 50,780 A 420,325 0 0,1 950,480" fill="none" />
               </defs>
 
-              <text
-                className="text-4xl md:text-5xl lg:text-6xl font-bold fill-white"
-                style={{
-                  letterSpacing: "0.08em",
-                  transform: "translateY(%)", // fine-tuned for Earth position
-                  whiteSpace: "nowrap",
-                }}
-              >
+              <text className="text-4xl md:text-5xl lg:text-6xl font-bold fill-white" style={{
+              letterSpacing: "0.08em",
+              transform: "translateY(%)",
+              // fine-tuned for Earth position
+              whiteSpace: "nowrap"
+            }}>
                 <textPath href="#textArc" startOffset="40%">
-                  <animate
-                    attributeName="startOffset"
-                    values="0%;-100%"
-                    dur="8s"
-                    repeatCount="indefinite"
-                  />
+                  <animate attributeName="startOffset" values="0%;-100%" dur="8s" repeatCount="indefinite" />
                   Transforming Low Earth Orbit • Transforming Low Earth Orbit •
                   Transforming Low Earth Orbit • Transforming Low Earth Orbit •
                 </textPath>
@@ -160,28 +127,17 @@ const Index = () => {
       </section>
 
       {/* Backed By / Partners Section */}
-      <section className="py-24 bg-background scroll-fade relative">
+      <section className="bg-background scroll-fade relative mx-0 my-0 py-[50px]">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-12">Backed By</h2>
 
-          <div
-            style={{
-              height: "120px",
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            <LogoLoop
-              logos={imageLogos} // or imageLogos
-              speed={70}
-              direction="left"
-              logoHeight={70}
-              gap={100}
-              pauseOnHover={false}
-              scaleOnHover
-              fadeOut
-              ariaLabel="Technology Partners"
-            />
+          <div style={{
+          height: "120px",
+          position: "relative",
+          overflow: "hidden"
+        }}>
+            <LogoLoop logos={imageLogos} // or imageLogos
+          speed={70} direction="left" logoHeight={70} gap={100} pauseOnHover={false} scaleOnHover fadeOut ariaLabel="Technology Partners" />
           </div>
         </div>
       </section>
@@ -190,12 +146,16 @@ const Index = () => {
       <section ref={statsRef} className="py-32 px-6 relative scroll-fade">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            <motion.div
-              className="text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
+            <motion.div className="text-center" initial={{
+            opacity: 0,
+            y: 30
+          }} animate={statsInView ? {
+            opacity: 1,
+            y: 0
+          } : {}} transition={{
+            duration: 0.6,
+            delay: 0.1
+          }}>
               <div className="text-5xl md:text-6xl font-bold text-secondary mb-2">
                 <span className="counter" data-target="150">
                   0
@@ -207,45 +167,53 @@ const Index = () => {
               </div>
             </motion.div>
 
-            <motion.div
-              className="text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
+            <motion.div className="text-center" initial={{
+            opacity: 0,
+            y: 30
+          }} animate={statsInView ? {
+            opacity: 1,
+            y: 0
+          } : {}} transition={{
+            duration: 0.6,
+            delay: 0.2
+          }}>
               <div className="text-5xl md:text-6xl font-bold text-accent mb-2">
-                <span className="counter" data-target="34000">
-                  0
-                </span>
-                +
+                <span className="counter" data-target="34000">900</span>
+                K+
               </div>
               <div className="text-sm md:text-base text-muted-foreground">
                 Debris Objects
               </div>
             </motion.div>
 
-            <motion.div
-              className="text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            <motion.div className="text-center" initial={{
+            opacity: 0,
+            y: 30
+          }} animate={statsInView ? {
+            opacity: 1,
+            y: 0
+          } : {}} transition={{
+            duration: 0.6,
+            delay: 0.3
+          }}>
               <div className="text-5xl md:text-6xl font-bold text-secondary mb-2">
-                <span className="counter" data-target="2026">
-                  2026
-                </span>
+                <span className="counter" data-target="2026">2030</span>
               </div>
               <div className="text-sm md:text-base text-muted-foreground">
                 First Mission
               </div>
             </motion.div>
 
-            <motion.div
-              className="text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
+            <motion.div className="text-center" initial={{
+            opacity: 0,
+            y: 30
+          }} animate={statsInView ? {
+            opacity: 1,
+            y: 0
+          } : {}} transition={{
+            duration: 0.6,
+            delay: 0.4
+          }}>
               <div className="text-5xl md:text-6xl font-bold text-accent mb-2">
                 <span className="counter" data-target="100">
                   0
@@ -263,12 +231,15 @@ const Index = () => {
       {/* Mission Section */}
       <section ref={missionRef} className="py-24 px-6 relative scroll-fade">
         <div className="container mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={missionInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="glass-card rounded-3xl p-12 md:p-16 text-center"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 50
+        }} animate={missionInView ? {
+          opacity: 1,
+          y: 0
+        } : {}} transition={{
+          duration: 0.8
+        }} className="glass-card rounded-3xl p-12 md:p-16 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Mission</h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               OrbitalHive combines aerospace innovation with biological
@@ -284,13 +255,17 @@ const Index = () => {
       {/* Dual Solutions Preview */}
       <section className="py-32 px-6 scroll-fade">
         <div className="container mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.8
+        }} className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
               Dual Solutions for Space Sustainability
             </h2>
@@ -301,10 +276,9 @@ const Index = () => {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <motion.div
-              className="scale-card group relative overflow-hidden rounded-3xl p-10 md:p-12 glass-card hover:shadow-2xl transition-all duration-500"
-              whileHover={{ y: -10 }}
-            >
+            <motion.div className="scale-card group relative overflow-hidden rounded-3xl p-10 md:p-12 glass-card hover:shadow-2xl transition-all duration-500" whileHover={{
+            y: -10
+          }}>
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -341,10 +315,9 @@ const Index = () => {
               </div>
             </motion.div>
 
-            <motion.div
-              className="scale-card group relative overflow-hidden rounded-3xl p-10 md:p-12 glass-card hover:shadow-2xl transition-all duration-500"
-              whileHover={{ y: -10 }}
-            >
+            <motion.div className="scale-card group relative overflow-hidden rounded-3xl p-10 md:p-12 glass-card hover:shadow-2xl transition-all duration-500" whileHover={{
+            y: -10
+          }}>
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-2xl bg-accent/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -387,13 +360,17 @@ const Index = () => {
 
       {/* CTA Section */}
       <section className="py-32 px-6 scroll-fade">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="container mx-auto max-w-5xl glass-card rounded-3xl p-12 md:p-16 text-center relative overflow-hidden"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 50
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} viewport={{
+        once: true
+      }} transition={{
+        duration: 0.8
+      }} className="container mx-auto max-w-5xl glass-card rounded-3xl p-12 md:p-16 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10"></div>
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
@@ -405,20 +382,13 @@ const Index = () => {
               economy together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-secondary hover:bg-secondary/90 text-background text-lg px-10 py-7 hover:scale-105 transition-transform"
-              >
+              <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-background text-lg px-10 py-7 hover:scale-105 transition-transform">
                 <Link to="/investors" className="flex items-center gap-2">
                   For Investors
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-accent/50 text-foreground hover:bg-accent/10 hover:border-accent text-lg px-10 py-7 hover:scale-105 transition-transform"
-              >
+              <Button size="lg" variant="outline" className="border-accent/50 text-foreground hover:bg-accent/10 hover:border-accent text-lg px-10 py-7 hover:scale-105 transition-transform">
                 <Link to="/customers" className="flex items-center gap-2">
                   For Customers
                   <ArrowRight className="w-5 h-5" />
@@ -433,34 +403,19 @@ const Index = () => {
       <footer className="py-16 px-6 border-t border-border/20 glass-morph">
         <div className="container mx-auto">
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8">
-            <Link
-              to="/solutions"
-              className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base"
-            >
+            <Link to="/solutions" className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base">
               Solutions
             </Link>
-            <Link
-              to="/missions"
-              className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base"
-            >
+            <Link to="/missions" className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base">
               Missions
             </Link>
-            <Link
-              to="/customers"
-              className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base"
-            >
+            <Link to="/customers" className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base">
               Customers
             </Link>
-            <Link
-              to="/investors"
-              className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base"
-            >
+            <Link to="/investors" className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base">
               Investors
             </Link>
-            <Link
-              to="/global"
-              className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base"
-            >
+            <Link to="/global" className="text-muted-foreground hover:text-secondary transition-colors text-sm md:text-base">
               Global
             </Link>
           </div>
@@ -471,8 +426,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
