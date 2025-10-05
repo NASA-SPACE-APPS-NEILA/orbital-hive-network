@@ -10,14 +10,16 @@ import Galaxy from "@/components/Galaxy";
 import LogoLoop from "@/components/LogoLoop";
 import { Button } from "@/components/ui/button";
 import earthHero from "@/assets/earth-hero.jpg";
+import nasa from "@/assets/nasa-logo.svg";
+import nirma from "@/assets/nirma-logo.png";
 const imageLogos = [
   {
-    src: "src/assets/nasa-logo.svg",
+    src: "nasa",
     alt: "Company 1",
     href: "https://www.nasa.gov",
   },
   {
-    src: "src/assets/nirma-logo.png",
+    src: "nirma",
     alt: "Company 2",
     href: "https://nirmauni.ac.in",
   },
@@ -130,9 +132,9 @@ const Index = () => {
                   textShadow: "0 0 80px rgba(249, 115, 22, 0.3)",
                 }}
                 initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                animate={{ 
-                  opacity: 1, 
-                  scale: 1, 
+                animate={{
+                  opacity: 1,
+                  scale: 1,
                   y: 0,
                 }}
                 transition={{
