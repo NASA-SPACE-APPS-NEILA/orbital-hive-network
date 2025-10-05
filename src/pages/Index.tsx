@@ -14,12 +14,12 @@ import nasa from "@/assets/nasa-logo.svg";
 import nirma from "@/assets/nirma-logo.png";
 const imageLogos = [
   {
-    src: "nasa",
+    src: nasa,
     alt: "Company 1",
     href: "https://www.nasa.gov",
   },
   {
-    src: "nirma",
+    src: nirma,
     alt: "Company 2",
     href: "https://nirmauni.ac.in",
   },
