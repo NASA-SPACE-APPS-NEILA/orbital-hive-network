@@ -1,59 +1,27 @@
 import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { ArrowRight, Orbit, Target, Recycle, Dna } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { Target, Recycle, Dna, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navigation from "@/components/Navigation";
-import EarthScene from "@/components/EarthScene";
 import ScrollProgress from "@/components/ScrollProgress";
 import Galaxy from "@/components/Galaxy";
-import { Button } from "@/components/ui/button";
 import LogoLoop from '@/components/LogoLoop';
-import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
+import { Button } from "@/components/ui/button";
+import earthHero from "@/assets/earth-hero.jpg";
 
-const techLogos = [
-  { node: <SiReact />, title: "React", href: "https://react.dev" },
-  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
-  { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
-  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
-];
-
-// Alternative with image sources
 const imageLogos = [
   { src: "src/assets/nasa-logo.svg", alt: "Company 1", href: "https://www.nasa.gov" },
   { src: "src/assets/nirma-logo.png", alt: "Company 2", href: "https://nirmauni.ac.in" },
 ];
 
-function App() {
-  return (
-    <div style={{ height: '200px', position: 'relative', overflow: 'hidden'}}>
-      <LogoLoop
-        logos={techLogos}
-        speed={120}
-        direction="left"
-        logoHeight={48}
-        gap={40}
-        pauseOnHover
-        scaleOnHover
-        fadeOut
-        fadeOutColor="#ffffff"
-        ariaLabel="Technology partners"
-      />
-    </div>
-  );
-}
 gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
   const missionRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollY } = useScroll();
-  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const heroScale = useTransform(scrollY, [0, 400], [1, 0.8]);
   
   const missionInView = useInView(missionRef, { once: true, margin: "-100px" });
   const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
@@ -61,18 +29,6 @@ const Index = () => {
   useEffect(() => {
     // GSAP Scroll Animations
     const ctx = gsap.context(() => {
-      // Parallax effect on hero section
-      gsap.to(heroRef.current, {
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-        y: 200,
-        opacity: 0.3,
-      });
-
       // Fade in sections on scroll
       gsap.utils.toArray<HTMLElement>(".scroll-fade").forEach((element) => {
         gsap.from(element, {
@@ -139,72 +95,43 @@ const Index = () => {
       
       <ScrollProgress />
       <Navigation />
-      
-      {/* Hero Section */}
-      <motion.section 
-        ref={heroRef}
-        style={{ opacity: heroOpacity, scale: heroScale }}
-        className="relative h-screen flex items-center justify-center px-6"
-      >
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-full h-full max-w-4xl">
-            <EarthScene />
+
+      {/* Semi-Circular Earth Section */}
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <div className="container mx-auto max-w-6xl relative">
+          <div className="relative w-full aspect-[2/1] overflow-hidden">
+            <img 
+              src={earthHero} 
+              alt="Earth from orbit" 
+              className="w-full h-full object-cover object-center rounded-t-full"
+              style={{ clipPath: 'ellipse(50% 100% at 50% 100%)' }}
+            />
+            
+            {/* SVG Text Animation along arc */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax meet">
+              <defs>
+                <path 
+                  id="textArc" 
+                  d="M 100,450 A 400,400 0 0,1 900,450" 
+                  fill="none" 
+                />
+              </defs>
+              <text className="text-4xl md:text-5xl lg:text-6xl font-bold fill-white" style={{ letterSpacing: '0.05em' }}>
+                <textPath href="#textArc" startOffset="0%">
+                  <animate 
+                    attributeName="startOffset" 
+                    from="-100%" 
+                    to="200%" 
+                    dur="20s" 
+                    repeatCount="indefinite"
+                  />
+                  Transforming Low Earth Orbit • Transforming Low Earth Orbit • 
+                </textPath>
+              </text>
+            </svg>
           </div>
         </div>
-        
-        <div className="relative z-10 text-center max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <motion.h1 
-              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Transforming <span className="text-secondary">Low Earth Orbit</span>
-            </motion.h1>
-            <motion.p 
-              className="text-xl md:text-2xl lg:text-3xl text-foreground/90 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              into a Circular, Living Economy
-            </motion.p>
-            <motion.p 
-              className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              Pioneering orbital recycling and in-space biomanufacturing for a sustainable future beyond Earth
-            </motion.p>
-            
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-background text-lg px-10 py-7 transition-all hover:scale-105">
-                <Link to="/solutions" className="flex items-center gap-2">
-                  Explore Solutions
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="border-accent/50 text-foreground hover:bg-accent/10 hover:border-accent text-lg px-10 py-7 transition-all hover:scale-105">
-                <Link to="/missions" className="flex items-center gap-2">
-                  <Orbit className="w-5 h-5" />
-                  View Missions
-                </Link>
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
+      </section>
 
       {/* Backed By / Partners Section */}
 <section className="py-24 bg-background scroll-fade relative">
