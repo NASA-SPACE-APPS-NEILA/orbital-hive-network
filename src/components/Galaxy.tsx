@@ -193,19 +193,19 @@ export default function Galaxy({
   focal = [0.5, 0.5],
   rotation = [1.0, 0.0],
   starSpeed = 0.6,
-  density = 1,
+  density = 1.5,
   hueShift = 140,
   disableAnimation = false,
   speed = 1.0,
   mouseInteraction = true,
-  glowIntensity = 0.3,
+  glowIntensity = .9,
   saturation = 0.0,
   mouseRepulsion = false,
   repulsionStrength = 10,
-  twinkleIntensity = 0.1,
+  twinkleIntensity = 0,
   rotationSpeed = 0.2,
   autoCenterRepulsion = 0,
-  transparent = true,
+  transparent = false,
   ...rest
 }: GalaxyProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
