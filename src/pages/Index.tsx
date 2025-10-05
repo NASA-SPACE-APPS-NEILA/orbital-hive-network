@@ -112,7 +112,7 @@ const Index = () => {
               <defs>
                 <path 
                   id="textArc" 
-                  d="M 100,450 A 400,400 0 0,1 900,450" 
+                  d="M 50,480 A 600,600 0 0,1 950,480" 
                   fill="none" 
                 />
               </defs>
