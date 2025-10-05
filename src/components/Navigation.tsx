@@ -47,21 +47,12 @@ const Navigation = () => {
     },
     {
       label: "Investors",
-      items: [
-        { label: "Market Opportunity" },
-        { label: "Circular Economy Impact" },
-        { label: "ROI Projections" },
-      ],
+      items: [],
       path: "/investors",
     },
     {
       label: "Global",
-      items: [
-        { label: "NASA" },
-        { label: "Astrospace" },
-        { label: "ISRO" },
-        { label: "RedWire" },
-      ],
+      items: [],
       path: "/global",
     },
   ];
@@ -116,7 +107,7 @@ const Navigation = () => {
                   </Link>
 
                   <AnimatePresence>
-                    {activeDropdown === item.label && (
+                    {activeDropdown === item.label && item.items.length > 0 && (
                       <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
