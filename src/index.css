@@ -204,3 +204,14 @@ All colors MUST be HSL.
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 }
+
+.orbiting-text {
+  animation: orbit-rotate 30s linear infinite;
+  transform-origin: 50% 60%;
+}
+
+@keyframes orbit-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
