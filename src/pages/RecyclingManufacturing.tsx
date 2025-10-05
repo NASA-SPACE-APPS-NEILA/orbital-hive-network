@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
+import Galaxy from "@/components/Galaxy";
 import { Recycle, Satellite, Wrench, Box, Factory, Zap } from "lucide-react";
 
 const RecyclingManufacturing = () => {
@@ -66,8 +67,22 @@ const RecyclingManufacturing = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <div className="min-h-screen relative">
+      {/* Galaxy Background */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
+        <Galaxy 
+          mouseInteraction={true} 
+          mouseRepulsion={false} 
+          density={1} 
+          glowIntensity={0.2} 
+          saturation={0} 
+          hueShift={180} 
+          transparent={true} 
+        />
+      </div>
+
+      <div className="relative z-10">
+        <Navigation />
       
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto max-w-7xl">
@@ -146,9 +161,10 @@ const RecyclingManufacturing = () => {
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ 
-                    delay: 0.8 + idx * 0.3,
+                    delay: idx * 0.2,
                     duration: 0.5,
                     type: "spring",
                     stiffness: 100
@@ -202,6 +218,7 @@ const RecyclingManufacturing = () => {
             </div>
           </motion.div>
         </div>
+      </div>
       </div>
     </div>
   );

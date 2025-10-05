@@ -16,27 +16,48 @@ const Navigation = () => {
   const navItems = [
     {
       label: "Customers",
-      items: ["Satellite Operators", "Space Agencies", "Startups", "Universities", "Defense"],
+      items: [
+        { label: "Satellite Operators" },
+        { label: "Space Agencies" },
+        { label: "Startups" },
+        { label: "Universities" },
+        { label: "Defense" }
+      ],
       path: "/customers"
     },
     {
       label: "Solutions",
-      items: ["Recycling & Manufacturing", "In-Space Biomanufacturing (ISBM)"],
+      items: [
+        { label: "Recycling & Manufacturing", path: "/solutions/recycling-manufacturing" },
+        { label: "In-Space Biomanufacturing (ISBM)", path: "/solutions/biomanufacturing" }
+      ],
       path: "/solutions"
     },
     {
       label: "Missions",
-      items: ["2026-2030 Roadmap", "2031-2040 Vision"],
+      items: [
+        { label: "2026-2030 Roadmap" },
+        { label: "2031-2040 Vision" }
+      ],
       path: "/missions"
     },
     {
       label: "Investors",
-      items: ["Market Opportunity", "Circular Economy Impact", "ROI Projections"],
+      items: [
+        { label: "Market Opportunity" },
+        { label: "Circular Economy Impact" },
+        { label: "ROI Projections" }
+      ],
       path: "/investors"
     },
     {
       label: "Global",
-      items: ["NASA", "ESA", "ISRO", "JAXA"],
+      items: [
+        { label: "NASA" },
+        { label: "ESA" },
+        { label: "ISRO" },
+        { label: "JAXA" }
+      ],
       path: "/global"
     },
   ];
@@ -102,12 +123,23 @@ const Navigation = () => {
                     >
                       <div className="glass-morph rounded-lg p-2 shadow-xl">
                         {item.items.map((subItem, idx) => (
-                          <div
-                            key={idx}
-                            className="px-4 py-2 text-sm text-foreground/80 hover:text-secondary hover:bg-secondary/10 rounded cursor-pointer transition-colors"
-                          >
-                            {subItem}
-                          </div>
+                          subItem.path ? (
+                            <Link
+                              key={idx}
+                              to={subItem.path}
+                              className="block px-4 py-2 text-sm text-foreground/80 hover:text-secondary hover:bg-secondary/10 rounded cursor-pointer transition-colors"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              {subItem.label}
+                            </Link>
+                          ) : (
+                            <div
+                              key={idx}
+                              className="px-4 py-2 text-sm text-foreground/80 hover:text-secondary hover:bg-secondary/10 rounded cursor-pointer transition-colors"
+                            >
+                              {subItem.label}
+                            </div>
+                          )
                         ))}
                       </div>
                     </motion.div>

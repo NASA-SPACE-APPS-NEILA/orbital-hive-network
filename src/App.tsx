@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Solutions from "./pages/Solutions";
 import RecyclingManufacturing from "./pages/RecyclingManufacturing";
+import InSpaceBiomanufacturing from "./pages/InSpaceBiomanufacturing";
 import Missions from "./pages/Missions";
 import Investors from "./pages/Investors";
 import Customers from "./pages/Customers";
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/solutions" element={<Solutions />} />
           <Route path="/solutions/recycling-manufacturing" element={<RecyclingManufacturing />} />
+          <Route path="/solutions/biomanufacturing" element={<InSpaceBiomanufacturing />} />
           <Route path="/missions" element={<Missions />} />
           <Route path="/investors" element={<Investors />} />
           <Route path="/customers" element={<Customers />} />

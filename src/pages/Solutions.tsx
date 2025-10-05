@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
+import Galaxy from "@/components/Galaxy";
 import { Recycle, FlaskConical, Wrench, Atom } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -34,8 +35,22 @@ const Solutions = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <div className="min-h-screen relative">
+      {/* Galaxy Background */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
+        <Galaxy 
+          mouseInteraction={true} 
+          mouseRepulsion={false} 
+          density={1} 
+          glowIntensity={0.2} 
+          saturation={0} 
+          hueShift={220} 
+          transparent={true} 
+        />
+      </div>
+
+      <div className="relative z-10">
+        <Navigation />
       
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto">
@@ -56,14 +71,14 @@ const Solutions = () => {
             {solutions.map((solution, idx) => (
               <Link
                 key={idx}
-                to={idx === 0 ? "/solutions/recycling-manufacturing" : "#"}
+                to={idx === 0 ? "/solutions/recycling-manufacturing" : "/solutions/biomanufacturing"}
                 className="block"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.2 }}
-                  className={`glass-morph rounded-2xl p-8 hover:scale-105 transition-transform duration-300 bg-gradient-to-br ${solution.gradient} cursor-pointer`}
+                  whileHover={{ y: -15 }}
+                  className={`glass-morph rounded-2xl p-8 transition-transform duration-100 bg-gradient-to-br ${solution.gradient} cursor-pointer`}
                 >
                 <div className="flex items-start gap-4 mb-6">
                   <div className="p-4 bg-secondary/20 rounded-xl animate-pulse-glow">
@@ -94,6 +109,7 @@ const Solutions = () => {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
