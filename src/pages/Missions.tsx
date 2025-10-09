@@ -6,37 +6,37 @@ import Galaxy from "@/components/Galaxy";
 const Missions = () => {
   const milestones = [
     {
-      year: "2026",
+      year: "2030",
       title: "First Debris Capture Mission",
       description: "Demonstrate autonomous capture technology",
     },
     {
-      year: "2027",
+      year: "2035",
       title: "ISBM Lab Launch",
       description: "Deploy orbital biomanufacturing facility",
     },
     {
-      year: "2028",
+      year: "2041",
       title: "Recycling Hub Operational",
       description: "Begin converting debris to raw materials",
     },
     {
-      year: "2030",
+      year: "2045",
       title: "Commercial Manufacturing",
       description: "Full-scale orbital manufacturing operations",
     },
     {
-      year: "2033",
+      year: "2049",
       title: "Multi-Node Network",
       description: "Expand to 5 orbital processing nodes",
     },
     {
-      year: "2035",
+      year: "2053",
       title: "Deep Space Extension",
       description: "Extend operations beyond LEO",
     },
     {
-      year: "2040",
+      year: "2057",
       title: "Self-Sustaining Ecosystem",
       description: "Achieve circular economy in orbit",
     },

@@ -25,7 +25,7 @@ const Investors = () => {
     },
     {
       label: "Target Launch",
-      value: "2026",
+      value: "2030",
       icon: Target,
       color: "text-accent",
     },

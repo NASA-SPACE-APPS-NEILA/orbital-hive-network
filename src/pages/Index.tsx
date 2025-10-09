@@ -310,7 +310,7 @@ const Index = () => {
               }}
             >
               <div className="text-5xl md:text-6xl font-bold text-secondary mb-2">
-                <span className="counter" data-target="2026">
+                <span className="counter" data-target="2030">
                   2030
                 </span>
               </div>
