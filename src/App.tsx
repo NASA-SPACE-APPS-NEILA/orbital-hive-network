@@ -11,6 +11,7 @@ import Missions from "./pages/Missions";
 import Investors from "./pages/Investors";
 import Customers from "./pages/Customers";
 import Global from "./pages/Global";
+import NasaSpaceApps from "./pages/NasaSpaceApps";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/investors" element={<Investors />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/global" element={<Global />} />
+          <Route path="/nasa-space-apps" element={<NasaSpaceApps />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
