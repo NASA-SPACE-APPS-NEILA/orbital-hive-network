@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Galaxy from "@/components/Galaxy";
 import { motion } from "framer-motion";
-import { Download, Maximize2 } from "lucide-react";
+import { Download, Maximize2, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NasaSpaceApps = () => {
@@ -91,6 +91,26 @@ const NasaSpaceApps = () => {
                     Download PPT
                   </a>
                 </Button>
+              </div>
+            </motion.div>
+
+            {/* Video Tile */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="glass-morph rounded-2xl p-6 md:p-8 mt-8"
+            >
+              <h2 className="text-2xl font-semibold mb-6">Project Video</h2>
+              
+              {/* Video Placeholder */}
+              <div className="relative rounded-xl overflow-hidden aspect-video border border-foreground/10 bg-foreground/5 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center mx-auto mb-4">
+                    <Play className="w-8 h-8 text-secondary" />
+                  </div>
+                  <p className="text-foreground/50">Video coming soon</p>
+                </div>
               </div>
             </motion.div>
           </div>
