@@ -15,9 +15,17 @@ const NasaSpaceApps = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Galaxy Background - reduced density like landing page */}
-      <div className="fixed inset-0 z-0">
-        <Galaxy transparent={false} density={0.3} />
+      {/* Galaxy Background - matching landing page config */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
+        <Galaxy
+          mouseInteraction={true}
+          mouseRepulsion={false}
+          density={1}
+          glowIntensity={0.2}
+          saturation={0}
+          hueShift={180}
+          transparent={true}
+        />
       </div>
 
       <Navigation />
