@@ -55,6 +55,11 @@ const Navigation = () => {
       items: [],
       path: "/global",
     },
+    {
+      label: "NASA Space Apps Challenge",
+      items: [],
+      path: "/nasa-space-apps",
+    },
   ];
 
   return (
