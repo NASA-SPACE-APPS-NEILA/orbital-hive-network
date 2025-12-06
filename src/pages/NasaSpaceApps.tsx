@@ -17,7 +17,7 @@ const NasaSpaceApps = () => {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Galaxy Background - reduced density like landing page */}
       <div className="fixed inset-0 z-0">
-        <Galaxy transparent={false} density={0.8} />
+        <Galaxy transparent={false} density={0.3} />
       </div>
 
       <Navigation />
