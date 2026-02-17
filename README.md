@@ -38,5 +38,5 @@ Check out our official landing page here:
 - **@vercel/analytics** — Web analytics and visitor tracking  
 
 ---
-Made with ❤️ by Raahil Desai
+Made with ❤️ by Raahil Desai, Hrushiraj Patel, Vedant Patel and Charu Petwal
 ---
